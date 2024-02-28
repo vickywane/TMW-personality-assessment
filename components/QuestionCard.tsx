@@ -1,9 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import { notFound } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { notFound, useRouter } from "next/navigation";
 import { QUESTIONS } from "@/mock/data";
 import Link from "next/link";
 import cn from "classnames";
+import {
+  TRAIT_STORAGE_KEY,
+  getStorageItem,
+  setStorageItem,
+} from "@/services/localStorage";
 
 interface QuestionCardProps {
   data: any;
@@ -16,6 +21,8 @@ export default function QuestionCard({
   nextQuestionId,
   prevQuestionId,
 }: QuestionCardProps) {
+  const router = useRouter();
+
   const [currentValue, setCurrentValue] = useState({
     question: "",
     selectedAnswer: "",
@@ -27,6 +34,41 @@ export default function QuestionCard({
       selectedAnswer: option,
     });
   };
+
+  useEffect(() => {
+    updateStorage({ lastQuestionId: data.id });
+  }, []);
+
+  const updateStorage = (storeData: Record<any, any>) => {
+    const existingStorageData = getStorageItem(TRAIT_STORAGE_KEY);
+
+    setStorageItem(TRAIT_STORAGE_KEY, {
+      ...existingStorageData,
+      ...storeData,
+    });
+  };
+
+  const onConfirmAnswer = () => {
+    const storageData = getStorageItem(TRAIT_STORAGE_KEY);
+
+    const allAssessments = [...storageData.assesments];
+
+    allAssessments.push({
+      id: data.id,
+      question: data.question,
+      selectedAnswer: currentValue.selectedAnswer,
+    });
+
+    updateStorage({ assesments: allAssessments });
+
+    return router.push(`/questions/${nextQuestionId}`);
+  };
+
+  const onCompleteAssessment = () => {
+      const storageData = getStorageItem(TRAIT_STORAGE_KEY)
+
+      storageData?.assesments
+  }
 
   return (
     <div>
@@ -41,7 +83,7 @@ export default function QuestionCard({
         <ul className="flex flex-col gap-y-4 mt-4">
           {data.options.map((option, idx) => (
             <li
-              onClick={() => onSelectAnswer(item.question, option.value)}
+              onClick={() => onSelectAnswer(option.question, option.value)}
               className={`rounded-lg py-4 px-2 hover:cursor-pointer hover:border-black hover:border-2 ${
                 currentValue.selectedAnswer === option.value &&
                 "border-black border-2"
@@ -72,17 +114,30 @@ export default function QuestionCard({
       >
         {prevQuestionId && (
           <Link href={`/questions/${prevQuestionId}`}>
-            <button className="bg-gray-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+            <button className="bg-gray-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full">
               Previous Question
             </button>
           </Link>
         )}
 
-        <Link href={`/questions/${nextQuestionId}`}>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+        {/* <Link href={`/questions/${nextQuestionId}`}> */}
+        {nextQuestionId ? (
+          <button
+            onClick={onConfirmAnswer}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full"
+          >
             Next Question
           </button>
-        </Link>
+        ) : (
+          <button
+            onClick={onCompleteAssessment}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-full"
+          >
+            Complete Assessment
+          </button>
+        )}
+
+        {/* </Link> */}
       </div>
       <br />
     </div>
