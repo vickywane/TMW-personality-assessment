@@ -1,5 +1,6 @@
 export const QUESTIONS = [
     {
+      id: "ac8a1e71-03e3-48c2-80e4-3d3660e0e5f5",
       question:
         "You’re really busy at work and a colleague is telling you their life story and personal woes. You:",
       options: [
@@ -23,6 +24,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "b2f5c6b8-f464-4a8d-a63d-2516e9bc76e4",
       question:
         "You’ve been sitting in the doctor’s waiting room for more than 25 minutes. You:",
       options: [
@@ -46,6 +48,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "c3e5024b-70c1-4d17-9c2b-7b5fb1b35742",
       question:
         "You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:",
       options: [
@@ -68,6 +71,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "da9b396a-1cf6-49ac-a29c-93ecdfb9c7e9",
       question: "You are taking part in a guided tour of a museum. You:",
       options: [
         {
@@ -91,6 +95,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "e6d3b8ec-001d-4a5a-b40a-67a5e8a0b183",
       question:
         "During dinner parties at your home, you have a hard time with people who:",
       options: [
@@ -113,6 +118,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "f9b33f02-5ff7-44b2-9f2e-6f430a7fb024",
       question:
         "You crack a joke at work, but nobody seems to have noticed. You:",
       options: [
@@ -135,6 +141,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "1c6e620d-30b5-47d8-b19c-64e6a1239275",
       question: "This morning, your agenda seems to be free. You:",
       options: [
         {
@@ -159,6 +166,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "2f4c44c4-12aa-475a-af09-bdbf731a2cb2",
       question:
         "During dinner, the discussion moves to a subject about which you know nothing at all. You:",
       options: [
@@ -181,6 +189,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "3a9a7611-dbb5-4385-8850-228d8636a04a",
       question:
         "You’re out with a group of friends and there’s a person who’s quite shy and doesn’t talk much. You:",
       options: [
@@ -203,6 +212,7 @@ export const QUESTIONS = [
       ],
     },
     {
+      id: "4c7e70fa-b2f7-4c87-9c0a-3a9cf0d1b7b0",
       question:
         "At work, somebody asks for your help for the hundredth time. You:",
       options: [
