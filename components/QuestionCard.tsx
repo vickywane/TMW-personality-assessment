@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { notFound, useRouter } from "next/navigation";
-import { QUESTIONS } from "@/mock/data";
+import { QUESTIONS, TRAIT } from "@/mock/data";
 import Link from "next/link";
 import cn from "classnames";
 import {
@@ -64,11 +64,32 @@ export default function QuestionCard({
     return router.push(`/questions/${nextQuestionId}`);
   };
 
-  const onCompleteAssessment = () => {
-      const storageData = getStorageItem(TRAIT_STORAGE_KEY)
+  const getHighestValue = (object: Record<any, any>) => {
+    return Object.keys(object).reduce(
+      (prev, next) => (object[prev] > object[next] ? prev : next),
+      ""
+    );
+  };
 
-      storageData?.assesments
-  }
+  const onCompleteAssessment = () => {
+    const storageData = getStorageItem(TRAIT_STORAGE_KEY);
+
+    const obj = {
+      rude: 0,
+      introvert: 0,
+      extrovert: 0,
+    };
+
+    for (const item of storageData?.assesments) {
+      for (const traitItem in TRAIT) {
+        obj[traitItem] += TRAIT[traitItem].includes(item.selectedAnswer)
+          ? 1
+          : 0;
+      }
+    }
+
+    console.log("highest is:", getHighestValue(obj));
+  };
 
   return (
     <div>

@@ -15,7 +15,7 @@ export default function Header() {
   useEffect(() => {
     const data = getStorageItem(TRAIT_STORAGE_KEY);
 
-    console.log("STORAGE", data);
+    // console.log("STORAGE", data);
     
 
     setUsername(data?.name);

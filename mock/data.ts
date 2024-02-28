@@ -1,17 +1,63 @@
-const TRAIT = [
+export const TRAIT = {
+  rude: [
+    "Interrupt and explain that you are really busy at the moment",
+    "Complain in a loud voice, while tapping your foot impatiently",
+    "Continuously interrupt your colleague",
+    "Are right up the front, adding your own comments in a loud voice",
+    "Talk privately between themselves",
+    "Keep telling it until they pay attention",
+    "Know that somebody will find a reason to come and bother you",
+    "Barely follow the discussion",
+    "Hardly notice them at all",
+    "Loudly make it known that you’re annoyed",
+  ],
+  introvert: [
+    "Ask them, please, to find somebody else for a change",
+    "Notice that they’re alone, but don’t go over to talk with them",
+    "Don’t dare show that you don’t know anything about the subject",
+    "Heave a sigh of relief and look forward to a day without stress",
+    "Think it’s for the best — it was a lame joke anyway",
+    "Hang around you all evening",
+    "Follow the group without question",
+    "Think that they are obviously right",
+    "Look at your watch every two minutes",
+    "Don’t dare to interrupt them",
+  ],
+  extrovert: [
+    "Listen, but with only with half an ear",
+    "Explain to other equally impatient people in the room that the doctor is always running late",
+    "Defend your own point of view, tooth and nail",
+    "Make sure that everyone is able to hear properly",
+    "Talk privately between themselves",
+    "Wait to share it with your friends after work",
+    "Pick up the phone and start filling up your agenda with meetings",
+    "Ask lots of questions to learn more about it",
+    "Go and have a chat with them",
+    "Give them a hand, as usual",
+  ],
+};
+
+export const PERSONALITY_RESULT_DETAILS = [
   {
-    rude: [
-      "Interrupt and explain that you are really busy at the moment",
-      "Complain in a loud voice, while tapping your foot impatiently",
-      "Continuously interrupt your colleague",
-      "Are right up the front, adding your own comments in a loud voice",
-      "Always drag the conversation back to themselves",
-      "Keep telling it until they pay attention",
-      "Know that somebody will find a reason to come and bother you",
-      "Barely follow the discussion",
-      "Hardly notice them at all",
-      "Loudly make it known that you’re annoyed",
-    ],
+    type: "introvert",
+    title: "You have proven to be an introvert",
+    text: "An introvert is someone who finds solace and strength in their inner world. Preferring reflection over constant social interaction, introverts often recharge by spending time alone or in small, intimate settings. They tend to be observant listeners, valuing deep connections and meaningful conversations. While they may appear reserved in large gatherings, introverts often possess rich inner lives, harboring creative thoughts, ideas, and a unique perspective on the world. They thrive in environments where they can engage in introspection, pursue their passions, and cultivate meaningful relationships with a select few.",
+  },
+  {
+    type: "extrovert",
+    title: "You are more of an introvert",
+    text: "You feel that living alone is to live happily, and you prefer hiding in a crowd rather than standing out in one. You are perpetually tormented by the idea of doing things wrong, not understanding or not being alert enough or intelligent enough to do what others expect of you. You lack in self-confidence and you seem to believe that others are better than you. While in a conversation, for example, you would be more likely to go along with the other’s points of view as you don’t fully respect your own opinions. Where there’s a low level task to complete or a service to be allotted, it’s you who volunteers. When people want to get out of a task, they naturally come to you as they know that you never say ‘no’. It’s not surprising that you sometimes have the impression of being permanently exploited, but you don’t really know how to break this vicious circle. On the rare occasions that you’ve tried to do so, this uncharacteristic defiance has caused uproar and you’ve ended up backing down. You are afraid of contact with others as you imagine that they are constantly judging you and that their probing looks will obviously find your faults. So, you try to remain the most transparent and discreet possible.",
+  },
+  {
+    type: "self_centered",
+
+    title: "You have high tendencies of being self centered.",
+    text: "A self-centered person is someone who consistently places their own needs, desires, and interests above those of others. Their primary focus revolves around themselves, often exhibiting behaviors that demonstrate a lack of consideration or empathy for the feelings and experiences of others. In conversations and interactions, a self-centered individual tends to dominate discussions, steering topics toward their own experiences or achievements. They may exhibit an insatiable need for attention and validation, seeking recognition and praise at every opportunity. Their relationships may be characterized by a one-sided dynamic, where they expect others to cater to their needs without reciprocating in kind. They may struggle to empathize with others' perspectives, dismissing or minimizing the feelings and concerns of those around them.",
+  },
+  {
+    type: "intellectual",
+    title: "Wow! You are highly intellectual!",
+    text: "An intellectual person is someone who possesses a deep curiosity and thirst for knowledge, constantly seeking to understand the world around them. They are characterized by their sharp intellect, critical thinking skills, and love for learning across various domain Intellectual individuals often engage in thought-provoking conversations, delving into complex topics with enthusiasm and insight. They enjoy exploring ideas from different perspectives, challenging assumptions, and uncovering new insights through rigorous analysis and debate. Their passion for knowledge drives them to pursue education and self-improvement continually, whether through formal study, reading, or engaging in intellectual discussions with others. They thrive in environments that stimulate their intellect, where they can exchange ideas and explore new concepts freely.",
   },
 ];
 

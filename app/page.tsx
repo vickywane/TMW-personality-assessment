@@ -36,7 +36,7 @@ export default function Home() {
   const restartAssessment = () => {
     clearStorageItem(TRAIT_STORAGE_KEY);
 
-    router.push("/");
+    setExistingAssessment(null)
   };
 
   return (
