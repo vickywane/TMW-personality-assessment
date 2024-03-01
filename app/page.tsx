@@ -8,13 +8,18 @@ import {
   setStorageItem,
 } from "@/services/localStorage";
 import Button from "@/components/Button";
+import { QUESTIONS } from "@/mock/data";
+import { StoredAssessmentType } from "@/utils/types";
 
 export default function Home() {
   const [name, setName] = useState("");
   const router = useRouter();
-  const [existingAssessment, setExistingAssessment] = useState(null);
+  const [existingAssessment, setExistingAssessment] =
+    useState<null | StoredAssessmentType>(null);
 
   const initalizeTraitsAssessment = () => {
+    const allAssessments = QUESTIONS[0];
+
     setStorageItem(TRAIT_STORAGE_KEY, {
       name,
       createdAt: new Date(),
@@ -22,7 +27,7 @@ export default function Home() {
       assesments: [],
     });
 
-    return router.push(`/questions/ac8a1e71-03e3-48c2-80e4-3d3660e0e5f5`);
+    return router.push(`/questions/${allAssessments.id}`);
   };
 
   useEffect(() => {

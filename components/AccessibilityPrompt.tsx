@@ -1,10 +1,15 @@
+/**
+ * An accessibility prompt component.
+ * @returns {JSX.Element} The JSX element representing the accessibility prompt.
+ */
+
 const AccessbilityPrompt = () => {
   return (
     <div>
-      <div className="px-4 py-4 bg-white rounded-xl" >
+      <div className="px-4 py-4 bg-white rounded-xl">
         <p className="text-gray-700 text-sm">
-          Press the <b>A, B, C, D </b> and <b> Enter </b> keys on your keyboard to quickly select
-          your answer and move to the next questions.{" "}
+          Press the <b>A, B, C, D </b> and <b> Enter </b> keys on your keyboard
+          to quickly select your answer and move to the next questions.{" "}
         </p>
       </div>
     </div>

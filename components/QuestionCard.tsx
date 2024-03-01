@@ -10,7 +10,7 @@ import {
   setStorageItem,
 } from "@/services/localStorage";
 import { useKeyBoardShortcut } from "@/hooks/useKeyboardShortcut";
-import { QuestionCardProps } from "@/utils/types";
+import { QuestionCardProps, StoredAssessmentType } from "@/utils/types";
 import QuestionOption from "./QuestionOption";
 import Button from "./Button";
 
@@ -41,7 +41,7 @@ export default function QuestionCard({
   }, []);
 
   const updateStorage = (storeData: Record<any, any>) => {
-    const existingStorageData = getStorageItem(TRAIT_STORAGE_KEY);
+    const existingStorageData : StoredAssessmentType = getStorageItem(TRAIT_STORAGE_KEY);
 
     const savedAnswer = existingStorageData?.assesments.find(
       ({ id: savedQuestionId }) => data.id === savedQuestionId
@@ -91,7 +91,6 @@ export default function QuestionCard({
     const storageData = getStorageItem(TRAIT_STORAGE_KEY);
 
     const obj = {
-      rude: 0,
       introvert: 0,
       extrovert: 0,
     };

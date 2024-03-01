@@ -8,6 +8,8 @@ import AccessbilityPrompt from "@/components/AccessibilityPrompt";
 async function getPageData(questionId: string) {
   const data = QUESTIONS.find(({ id }) => id === questionId);
 
+  if (!data) return notFound()
+
   return {
     data,
     nextQuestionId:

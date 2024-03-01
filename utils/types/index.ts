@@ -30,11 +30,23 @@ export interface QuestionOptionProps {
   selectedAnswer: string;
 }
 
-
 export interface ButtonProps {
-  disabled?: boolean
-  onClick : () => void
-  title : string
-  hidden?: boolean
-  styleClass : string
+  disabled?: boolean;
+  onClick: () => void;
+  title: string;
+  hidden?: boolean;
+  styleClass: string;
+}
+
+export interface StoredAssessmentType {
+  name: string;
+  createdAt: string;
+  lastQuestionId: string;
+  assesments:
+    | Array<{
+        id: string;
+        selectedAnswer: string;
+        question: string;
+      }>
+    | [];
 }
