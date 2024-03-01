@@ -1,3 +1,5 @@
+import { ALPHA_KEY } from "@/utils/types";
+
 export const TRAIT = {
   rude: [
     "Interrupt and explain that you are really busy at the moment",
@@ -298,3 +300,37 @@ export const QUESTIONS = [
     ],
   },
 ];
+
+export const SUPPORTED_ALPHA_KEYS : Array<ALPHA_KEY> = [
+  {
+    key: "Enter",
+    keyName: "Enter",
+    keyCode: 13,
+  },
+  {
+    key: "A",
+    keyName: "KeyA",
+    keyCode: 65,
+  },
+  {
+    key: "B",
+    keyName: "KeyB",
+    keyCode: 66,
+  },
+  {
+    key: "C",
+    keyName: "KeyC",
+    keyCode: 67,
+  },
+  {
+    key: "D",
+    keyName: "KeyD",
+    keyCode: 68,
+  },
+];
+
+export const ENTER_KEY = {
+  key: "Enter",
+  keyName: "Enter",
+  keyCode: 13,
+};
