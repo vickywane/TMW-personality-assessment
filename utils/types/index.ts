@@ -19,8 +19,22 @@ export interface PersonalityQuestionType {
 }
 
 export interface QuestionCardProps {
-    data: PersonalityQuestionType;
-    nextQuestionId?: string;
-    prevQuestionId?: string;
-  }
-  
+  data: PersonalityQuestionType;
+  nextQuestionId?: string;
+  prevQuestionId?: string;
+}
+
+export interface QuestionOptionProps {
+  handleAnswerClick: (value: string) => void;
+  option: any;
+  selectedAnswer: string;
+}
+
+
+export interface ButtonProps {
+  disabled?: boolean
+  onClick : () => void
+  title : string
+  hidden?: boolean
+  styleClass : string
+}

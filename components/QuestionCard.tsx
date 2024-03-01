@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { TRAIT, ENTER_KEY } from "@/mock/data";
-import Link from "next/link";
 import cn from "classnames";
 import { getHighestValue } from "@/utils/helpers/";
 import {
@@ -12,6 +11,22 @@ import {
 } from "@/services/localStorage";
 import { useKeyBoardShortcut } from "@/hooks/useKeyboardShortcut";
 import { QuestionCardProps } from "@/utils/types";
+import QuestionOption from "./QuestionOption";
+import Button from "./Button";
+
+/**
+ * A question card component.
+ * @param {Object} props - The properties of the question card.
+ * @param {Object} props.data - The data object containing information about the question.
+ * @param {string} props.data.id - The unique identifier of the question.
+ * @param {string} props.data.question - The text content of the question.
+ * @param {Object[]} props.data.options - An array of options for the question.
+ * @param {string} props.data.options[].alphaKey - The alpha key of the option.
+ * @param {string} props.data.options[].value - The value or text content of the option.
+ * @param {string} props.nextQuestionId - The unique identifier of the next question.
+ * @param {string} props.prevQuestionId - The unique identifier of the previous question.
+ * @returns {JSX.Element} The JSX element representing the question card.
+ */
 
 export default function QuestionCard({
   data,
@@ -19,18 +34,7 @@ export default function QuestionCard({
   prevQuestionId,
 }: QuestionCardProps) {
   const router = useRouter();
-
-  const [currentValue, setCurrentValue] = useState({
-    question: "",
-    selectedAnswer: "",
-  });
-
-  const onSelectAnswer = (question: any, option: string) => {
-    setCurrentValue({
-      question: "",
-      selectedAnswer: option,
-    });
-  };
+  const [selectedAnswer, setSelectedAnswer] = useState("");
 
   useEffect(() => {
     updateStorage({ lastQuestionId: data.id });
@@ -38,6 +42,14 @@ export default function QuestionCard({
 
   const updateStorage = (storeData: Record<any, any>) => {
     const existingStorageData = getStorageItem(TRAIT_STORAGE_KEY);
+
+    const savedAnswer = existingStorageData?.assesments.find(
+      ({ id: savedQuestionId }) => data.id === savedQuestionId
+    );
+
+    if (savedAnswer?.selectedAnswer) {
+      setSelectedAnswer(savedAnswer?.selectedAnswer);
+    }
 
     setStorageItem(TRAIT_STORAGE_KEY, {
       ...existingStorageData,
@@ -51,7 +63,7 @@ export default function QuestionCard({
     );
 
     if (matchingAnswerKey) {
-      onSelectAnswer(data.question, matchingAnswerKey.value);
+      setSelectedAnswer(matchingAnswerKey.value);
     }
   };
 
@@ -67,7 +79,7 @@ export default function QuestionCard({
     allAssessments.push({
       id: data.id,
       question: data.question,
-      selectedAnswer: currentValue.selectedAnswer,
+      selectedAnswer,
     });
 
     updateStorage({ assesments: allAssessments });
@@ -85,10 +97,8 @@ export default function QuestionCard({
     };
 
     for (const item of storageData?.assesments) {
-      for (const traitItem in TRAIT) {
-        obj[traitItem] += TRAIT[traitItem].includes(item.selectedAnswer)
-          ? 1
-          : 0;
+      for (const trait in TRAIT) {
+        obj[trait] += TRAIT[trait].includes(item.selectedAnswer) ? 1 : 0;
       }
     }
 
@@ -109,24 +119,11 @@ export default function QuestionCard({
       <div>
         <ul className="flex flex-col gap-y-4 mt-4">
           {data.options.map((option, idx) => (
-            <li
-              onClick={() => onSelectAnswer(option.value)}
-              className={`rounded-lg py-4 px-2 hover:cursor-pointer hover:border-black hover:border-2 ${
-                currentValue.selectedAnswer === option.value &&
-                "border-black border-2"
-              }`}
+            <QuestionOption
+              handleAnswerClick={(value) => setSelectedAnswer(value)}
               key={idx}
-            >
-              <div className="flex items-center">
-                <div className="flex items-center justify-center rounded border-2 h-[40px] w-[40px] border-black">
-                  <p> {option.alphaKey} </p>
-                </div>
-
-                <div className="ml-3">
-                  <p> {option.value} </p>
-                </div>
-              </div>
-            </li>
+              {...{ option, selectedAnswer }}
+            />
           ))}
         </ul>
       </div>
@@ -140,33 +137,30 @@ export default function QuestionCard({
         )}
       >
         {prevQuestionId && (
-          <Link href={`/questions/${prevQuestionId}`}>
-            <button className="bg-gray-500 hover:bg-blue-700 text-white font-medium py-2 px-8 rounded-full">
-              Previous Question
-            </button>
-          </Link>
+          <Button
+            hidden={!prevQuestionId}
+            onClick={() => router.push(`/questions/${prevQuestionId}`)}
+            title="Previous"
+            styleClass="bg-gray-500 hover:bg-blue-700"
+          />
         )}
 
         {nextQuestionId ? (
-          <button
-            disabled={!currentValue.selectedAnswer}
+          <Button
+            title={"Next Question"}
             onClick={onConfirmAnswer}
-            className={cn(
-              "text-white font-medium py-2 px-8 rounded-full",
-              currentValue.selectedAnswer
+            styleClass={
+              selectedAnswer
                 ? "bg-blue-500 hover:bg-blue-700"
                 : "bg-gray-500 hover:bg-gray-700"
-            )}
-          >
-            Next Question
-          </button>
+            }
+          />
         ) : (
-          <button
+          <Button
             onClick={onCompleteAssessment}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-8 rounded-full"
-          >
-            Complete Assessment
-          </button>
+            title="Complete Assessment"
+            styleClass="bg-blue-500 hover:bg-blue-700"
+          />
         )}
       </div>
       <br />
