@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { QUESTIONS } from "@/mock/data";
 import QuestionCard from "@/components/QuestionCard";
 import Header from "@/components/Header";
+import AccessbilityPrompt from "@/components/AccessibilityPrompt";
 
 async function getPageData(questionId: string) {
   const data = QUESTIONS.find(({ id }) => id === questionId);
@@ -36,9 +37,10 @@ export default async function MyPage({ params }: PageProps) {
 
       <div
         style={{ height: "100vh" }}
-        className="h-full flex justify-center items-center bg-gray-200"
+        className="h-full flex flex-col justify-center items-center bg-gray-200"
       >
         <br />
+        <AccessbilityPrompt />
         <br />
 
         <div className="bg-white p-4 max-w-[960px] m-auto">

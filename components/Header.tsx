@@ -5,8 +5,9 @@ import {
   getStorageItem,
 } from "@/services/localStorage";
 import Link from "next/link";
-import  { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Button from "./Button";
 
 export default function Header() {
   const [username, setUsername] = useState("");
@@ -14,9 +15,6 @@ export default function Header() {
 
   useEffect(() => {
     const data = getStorageItem(TRAIT_STORAGE_KEY);
-
-    // console.log("STORAGE", data);
-    
 
     setUsername(data?.name);
   }, []);
@@ -30,7 +28,7 @@ export default function Header() {
   return (
     <header className="bg-white h-[55px] flex items-center w-full">
       <nav className="flex flex-row justify-between w-full px-12">
-        <div>
+        <div className="flex items-center" >
           <Link href={"/"}>
             <p>
               <span className="text-lg font-medium"> Trait Checker | </span>{" "}
@@ -40,14 +38,11 @@ export default function Header() {
         </div>
 
         <div>
-          <button
+          <Button
             onClick={restartAssessment}
-            className={
-              "bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 w-full px-12 rounded-full"
-            }
-          >
-            Restart Assessment
-          </button>
+            styleClass={"bg-blue-500 hover:bg-blue-700"}
+            title="Restart Assessment"
+          />
         </div>
       </nav>
     </header>

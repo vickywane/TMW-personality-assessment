@@ -24,7 +24,7 @@ const Button = ({
     <button
       {...{ disabled, onClick }}
       className={cn(
-        "text-white font-medium py-2 px-8 rounded-full",
+        "text-white  font-medium py-2 px-8 rounded-full",
         styleClass
       )}
     >

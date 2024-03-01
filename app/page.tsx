@@ -1,13 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import cn from "classnames";
 import {
   TRAIT_STORAGE_KEY,
   clearStorageItem,
   getStorageItem,
   setStorageItem,
 } from "@/services/localStorage";
+import Button from "@/components/Button";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -36,7 +36,7 @@ export default function Home() {
   const restartAssessment = () => {
     clearStorageItem(TRAIT_STORAGE_KEY);
 
-    setExistingAssessment(null)
+    setExistingAssessment(null);
   };
 
   return (
@@ -58,7 +58,10 @@ export default function Home() {
       <div>
         {existingAssessment ? (
           <div className="mt-4 border rounded p-4">
-            <p className="text-xl">Hi <span className="font-medium" >{existingAssessment?.name}</span>...</p>
+            <p className="text-xl">
+              Hi <span className="font-medium">{existingAssessment?.name}</span>
+              ...
+            </p>
             <br />
             <p>
               You have answered {existingAssessment?.assesments.length}{" "}
@@ -119,16 +122,16 @@ export default function Home() {
             </div>
 
             <div className=" mt-8 w-full">
-              <button
+              <Button
                 onClick={initalizeTraitsAssessment}
                 disabled={!name}
-                className={cn(
-                  "bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 w-full px-12 rounded-full",
-                  !name && "bg-gray-500"
-                )}
-              >
-                Discover Your Personality Trait
-              </button>
+                title="Discover Your Personality Trait"
+                styleClass={
+                  !name
+                    ? "bg-gray-500 w-full"
+                    : "bg-blue-500 w-full hover:bg-blue-700"
+                }
+              />
             </div>
           </div>
         )}
