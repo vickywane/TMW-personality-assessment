@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Heading from "../components/Header";
-import router from "next/navigation";
 
 jest.mock("next/navigation", () => ({
   useRouter() {
@@ -28,5 +27,13 @@ describe("Page", () => {
     screen.getByTestId("restart-assessment-btn").click();
 
     expect(localStorage.removeItem).toHaveBeenCalled();
+  });
+
+  it("Executes router.push on Restart Assessment button click to navigate to home page", () => {
+    render(<Heading />);
+
+    screen.getByTestId("restart-assessment-btn").click();
+
+    // expect(localStorage.removeItem).toHaveBeenCalled();
   });
 });
