@@ -31,6 +31,7 @@ export interface QuestionOptionProps {
 }
 
 export interface ButtonProps {
+  testId?: string;
   disabled?: boolean;
   onClick: () => void;
   title: string;

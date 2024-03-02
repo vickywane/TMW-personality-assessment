@@ -1,12 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  TRAIT_STORAGE_KEY,
-  clearStorageItem,
-  getStorageItem,
-  setStorageItem,
-} from "@/services/localStorage";
+import { TRAIT_STORAGE_KEY, clearStorageItem, getStorageItem, setStorageItem } from "@/services/localStorage";
 import Button from "@/components/Button";
 import { QUESTIONS } from "@/mock/data";
 import { StoredAssessmentType } from "@/utils/types";

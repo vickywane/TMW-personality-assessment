@@ -12,6 +12,7 @@ import cn from "classnames";
  * @returns {JSX.Element | null} The button element or null if hidden is true.
  */
 const Button = ({
+  testId,
   disabled,
   onClick,
   title,
@@ -23,6 +24,7 @@ const Button = ({
   return (
     <button
       {...{ disabled, onClick }}
+      data-testid={testId}
       className={cn(
         "text-white  font-medium py-2 px-8 rounded-full",
         styleClass
