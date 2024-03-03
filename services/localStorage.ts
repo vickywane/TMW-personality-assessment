@@ -8,7 +8,7 @@ export const getStorageItem = (key: string) => {
   const data = localStorage.getItem(key);
 
   if (!data) {
-    return console.error(`Data for ${key} not found`);
+    return console.log(`Data for ${key} not found`);
   }
 
   return JSON.parse(data);

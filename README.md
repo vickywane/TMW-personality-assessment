@@ -1,17 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TMW Personality Trait Checker
+This is a demo application built to help users understand their personality through a series of questions. This application stores user progress locally using the localStorage browser API. 
 
-## Getting Started
-
-First, run the development server:
+### To run locally: 
 
 ```bash
 npm run dev
+
 # or
+
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Testing 
+This application has End to End (E2E) suites created using the **Jest** and **@testing-library/react** libraries: 
+
+## To run test: 
+
+```bash
+yarn test
+```
+
+<image 
+    alt="Jest test suites"
+    src="./public/screenshots/test-suites.png"
+/>
+
+## Application Screenshots
+
+<image 
+    alt="Entry Form"
+    src="./public/screenshots/assessment-start-form.png"
+/>
+
+<image 
+    alt="Jest test suites"
+    src="./public/screenshots/assessment-question.png"
+/>
+
+<image 
+    alt="Jest test suites"
+    src="./public/screenshots/complete-assessment.png"
+/>
