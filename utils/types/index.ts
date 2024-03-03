@@ -26,11 +26,12 @@ export interface QuestionCardProps {
 
 export interface QuestionOptionProps {
   handleAnswerClick: (value: string) => void;
-  option: any;
+  option: PersonalityQuestionType["options"][0];
   selectedAnswer: string;
 }
 
 export interface ButtonProps {
+  testId?: string;
   disabled?: boolean;
   onClick: () => void;
   title: string;
