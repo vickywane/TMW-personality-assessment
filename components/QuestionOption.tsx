@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {  QuestionOptionProps } from "@/utils/types";
+import { QuestionOptionProps } from "@/utils/types";
 
 /**
  * A question option component.
@@ -20,6 +20,7 @@ export default function QuestionOption({
 }: QuestionOptionProps) {
   return (
     <li
+      data-testid="option-container"
       onClick={() => handleAnswerClick(option.value)}
       className={`rounded-lg py-4 px-2 hover:cursor-pointer hover:border-black hover:border-2 ${
         selectedAnswer === option.value && "border-black border-2"
@@ -27,11 +28,11 @@ export default function QuestionOption({
     >
       <div className="flex items-center">
         <div className="flex items-center justify-center rounded border-2 h-[40px] w-[40px] border-black">
-          <p> {option.alphaKey} </p>
+          <p data-testid="alphaKey"> {option.alphaKey} </p>
         </div>
 
         <div className="ml-3">
-          <p> {option.value} </p>
+          <p data-testid="optionValue">{option.value}</p>
         </div>
       </div>
     </li>

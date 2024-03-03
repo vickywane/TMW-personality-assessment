@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Button from "../components/Button";
 
-describe("Page", () => {
+describe("Button Component", () => {
   it("Renders a button with title, styleClass, onClick, disabled props", () => {
     render(
       <Button
@@ -13,8 +13,7 @@ describe("Page", () => {
       />
     );
 
-    const btnElememt = screen.getByTestId("test-id");
-
+    const btnElememt = screen.getByRole('button', { name: "Test Button" });
     expect(btnElememt).toBeInTheDocument();
   });
 
@@ -29,8 +28,25 @@ describe("Page", () => {
       />
     );
 
-    const btnElememt = screen.getByTestId("test-id");
-
+    const btnElememt = screen.queryByText("test-id");
     expect(btnElememt).toBeNull()
+  });
+
+  it("onClick prop is executed when button is clicked", () => {
+    const mockedhandleAnswerClickProp = jest.fn();
+
+    render(
+      <Button
+        testId="test-id"
+        title="Test Button"
+        onClick={mockedhandleAnswerClickProp}
+        styleClass=""
+      />
+    );
+
+    const btnElememt = screen.getByTestId("test-id");
+    btnElememt.click()
+
+    expect(mockedhandleAnswerClickProp).toHaveBeenCalled();
   });
 });
