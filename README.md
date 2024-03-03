@@ -1,6 +1,8 @@
 # TMW Personality Trait Checker
 This is a demo application built to help users understand their personality through a series of questions. This application stores user progress locally using the localStorage browser API. 
 
+You can view the deployed version of this application at https://tmw-personality.netlify.app/
+
 ### To run locally: 
 
 ```bash
